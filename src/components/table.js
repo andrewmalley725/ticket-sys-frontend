@@ -49,7 +49,7 @@ function getHeaders(data){
 
       return(
           <div>
-              <table className='styled-table'>
+              <table>
                   <tr>
                       {
                           head.map(header => {

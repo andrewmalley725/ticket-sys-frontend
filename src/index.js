@@ -8,6 +8,8 @@ import {
   Route,
 } from "react-router-dom";
 import NavBar from './components/nav';
+import AddCust from './components/addcust';
+import AddTicket from './components/addticket';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: '/addemp',
     element: <AddEmp/>,
+  },
+  {
+    path: '/addcust',
+    element: <AddCust/>,
+  },
+  {
+    path: '/addticket',
+    element: <AddTicket/>,
   },
 ]);
 
