@@ -83,9 +83,9 @@ function getHeaders(data){
                                 </select>
                             </td>
                             <td>
-                                {
-                                    emp ? <button type='button' onClick={() => handleClick()}>Apply</button> : <></>
-                                }
+                                
+                                <button type='button' onClick={() => handleClick()}>Close</button>
+                                
                             </td>
                           </tr>
                       );

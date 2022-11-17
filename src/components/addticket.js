@@ -7,6 +7,7 @@ export default function AddTicket(){
 
     const [dec, setDec] = useState('');
     const [users, setUsers] = useState();
+    const [user, setUser] = useState();
 
     useEffect(() => {
         axios.get(`${url}customer`).then((result) => {
@@ -22,7 +23,7 @@ export default function AddTicket(){
     function handleSubmit(){
         const obj = {
             msg: dec,
-            user: users
+            user: user
         }
 
         axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
@@ -30,13 +31,15 @@ export default function AddTicket(){
         window.location.reload();
     }
 
+    console.log(user);
+
     return(
         <div>
             Add ticket description (limit 300 characters)<br/>
             <textarea maxlength={300} onKeyUp={e => handleChange(e)}>
             </textarea>&nbsp;&nbsp;
-            <select>
-                <option onChange={(e) => setUsers(e.target.value)} selected disabled>Select a patient</option>
+            <select onChange={(e) => setUser(e.target.value)}>
+                <option selected disabled>Select a patient</option>
                 {
                     users ? users.map(i => {
                         return(
