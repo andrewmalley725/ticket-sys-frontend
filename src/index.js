@@ -10,6 +10,7 @@ import {
 import NavBar from './components/nav';
 import AddCust from './components/addcust';
 import AddTicket from './components/addticket';
+import Closed from './components/closedtickets';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/addticket',
     element: <AddTicket/>,
+  },
+  {
+    path: '/closed',
+    element: <Closed/>,
   },
 ]);
 
