@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function getHeaders(data){
@@ -13,9 +14,21 @@ function getHeaders(data){
   }
   
   export default function Table(props){
-      
+
+      const url = "http://localhost:3001/";
+
       let head = getHeaders(props.data);
-  
+
+      const [names, setData] = useState();
+
+      useEffect(() => {
+        axios.get(`${url}employee`).then(result => {
+           setData(result.data['data']);
+        })
+      },[])
+
+      console.log(names);
+
       return(
           <div>
               <table className='styled-table'>
@@ -39,6 +52,18 @@ function getHeaders(data){
                                   )
                                   })
                               }
+                            <td>
+                                <select>
+                                    <option selected disabled>Compleated by</option>
+                                    {
+                                        names && names.length > 0 ? names.map(i => {
+                                            return(
+                                                <option value={i}>{i}</option>
+                                            )
+                                        }) : <option></option>
+                                    }
+                                </select>
+                            </td>
                           </tr>
                       );
                       })
