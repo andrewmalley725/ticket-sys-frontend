@@ -20,6 +20,8 @@ function getHeaders(data){
       let head = getHeaders(props.data);
 
       const [names, setData] = useState();
+      const [ID, setID] = useState();
+      const [emp, setEmp] = useState();
 
       useEffect(() => {
         axios.get(`${url}employee`).then(result => {
@@ -27,7 +29,23 @@ function getHeaders(data){
         })
       },[])
 
-      console.log(names);
+      function handleChange(e, index){
+        setID(props.data[parseInt(index)]['ticketid']);
+        setEmp(e.target.value);
+      }
+
+      function handleClick(){
+        const obj = {
+            id: ID,
+            emp: emp
+        }
+        axios.post(`${url}completed`, obj).then(() => console.log('Marked as complete'));
+
+        window.location.reload();
+      }
+
+      console.log(emp);
+      console.log(ID);
 
       return(
           <div>
@@ -53,16 +71,21 @@ function getHeaders(data){
                                   })
                               }
                             <td>
-                                <select>
-                                    <option selected disabled>Compleated by</option>
+                                <select onChange={(e) => handleChange(e,key)}>
+                                    <option selected disabled>Completed by</option>
                                     {
                                         names && names.length > 0 ? names.map(i => {
                                             return(
                                                 <option value={i}>{i}</option>
                                             )
-                                        }) : <option></option>
+                                        }) : <option></option>   
                                     }
                                 </select>
+                            </td>
+                            <td>
+                                {
+                                    emp ? <button type='button' onClick={() => handleClick()}>Apply</button> : <></>
+                                }
                             </td>
                           </tr>
                       );

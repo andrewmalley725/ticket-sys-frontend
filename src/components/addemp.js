@@ -16,7 +16,8 @@ export default function AddEmp(){
         }
 
         axios.post(`${url}addemp`, obj).then(() => console.log('Employee added'));
-        
+        window.location.reload()
+    
     }
     console.log(userName);
     console.log(empFirst);
@@ -31,5 +32,4 @@ export default function AddEmp(){
         </div>
     )
 
-    //window.location.reload()
 }
